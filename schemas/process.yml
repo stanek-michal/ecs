@@ -304,6 +304,40 @@
 
         Note: This field is only set on `process.entry_leader`, `process.session_leader` and `process.group_leader`.
 
+    - name: ai_agent
+      level: extended
+      type: object
+      alpha: This field is alpha and subject to change.
+      short: AI-agent tool identification fields.
+      description: >
+        Fields describing an AI-agent tool associated with a process.
+
+        When a process is identified as a known AI-agent development tool, these
+        fields can be populated on the process event and propagated to descendant
+        processes. This enables analysts and detection rules to distinguish
+        AI-agent-initiated activity from human-initiated activity.
+
+    - name: ai_agent.name
+      level: extended
+      type: keyword
+      alpha: This field is alpha and subject to change.
+      short: Canonical name of the AI-agent tool.
+      description: >
+        Canonical name of the AI-agent tool associated with this process or its
+        ancestor.
+
+        Examples include `cursor`, `claude_code`, `codex`, `copilot`, `ollama`,
+        and `gemini_cli`.
+
+    - name: ai_agent.is_descendant
+      level: extended
+      type: boolean
+      alpha: This field is alpha and subject to change.
+      short: Whether this process is a descendant of an AI-agent tool process.
+      description: >
+        True when this process was spawned, directly or transitively, by a known
+        AI-agent tool process.
+
     - name: env_vars
       level: extended
       type: keyword
